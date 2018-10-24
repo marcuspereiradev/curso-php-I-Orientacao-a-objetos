@@ -1,6 +1,8 @@
 <?php require_once("cabecalho.php")?>
 <?php require_once("banco-categoria.php");?>
 <?php require_once("logica-usuario.php");?>
+<?php require_once("class/Produto.php");?>
+<?php require_once("class/Categoria.php");?>
 <?php $categorias = listaCategorias($conexao);?>
 <?php verificaUsuario();?>
 
@@ -9,7 +11,12 @@
         <table class="table">
             
             <?php 
-                $produto = array("nome" => "", "descricao" => "", "preco" => "", "categoria_id" => "1");
+                $categoria = new Categoria();
+                $categoria->id = 1;
+                
+                $produto = new Produto();
+                $produto->categoria = $categoria;
+
                 $usado = "";
                 include("produto-formulario-base.php");
             ?>
