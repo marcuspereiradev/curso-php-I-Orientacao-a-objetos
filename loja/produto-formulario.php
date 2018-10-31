@@ -3,7 +3,7 @@
 <?php require_once("logica-usuario.php");?>
 <?php require_once("class/Produto.php");?>
 <?php require_once("class/Categoria.php");?>
-<?php $categorias = listaCategorias($conexao);?>
+
 <?php verificaUsuario();?>
 
     <h1>Formulário de cadastro</h1>
@@ -12,12 +12,12 @@
             
             <?php 
                 $categoria = new Categoria();
-                $categoria->id = 1;
+                $categoria->setId(1);
                 
-                $produto = new Produto();
-                $produto->categoria = $categoria;
+                $produto = new Produto("", "", "", $categoria, "");
+                
+                $categorias = listaCategorias($conexao);
 
-                $usado = "";
                 include("produto-formulario-base.php");
             ?>
 
